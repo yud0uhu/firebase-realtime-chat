@@ -1898,6 +1898,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"firebase-realtime-chat@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "firebase-realtime-chat@workspace:."
+  dependencies:
+    "@next/font": 13.1.1
+    "@types/node": ^18.11.17
+    "@types/react": 18.0.26
+    "@types/react-dom": 18.0.10
+    eslint: 8.30.0
+    eslint-config-next: 13.1.1
+    eslint-config-prettier: ^8.5.0
+    firebase: ^9.15.0
+    husky: ^8.0.2
+    lint-staged: ^13.1.0
+    next: 13.1.1
+    prettier: ^2.8.1
+    react: 18.2.0
+    react-dom: 18.2.0
+    typescript: 4.9.4
+  languageName: unknown
+  linkType: soft
+
 "firebase@npm:^9.15.0":
   version: 9.15.0
   resolution: "firebase@npm:9.15.0"
@@ -2758,28 +2780,6 @@ __metadata:
   checksum: 23ad088b08f898fc9b53011d7bb78ec48e79de7627e01ab5518e806033861bef68d5b0cd0e2205c2f36690ac9571ff6bcb05eb777ced2eeda8d4ac5b44592c3d
   languageName: node
   linkType: hard
-
-"next-ts-eslint-prettier-husky-template@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "next-ts-eslint-prettier-husky-template@workspace:."
-  dependencies:
-    "@next/font": 13.1.1
-    "@types/node": ^18.11.17
-    "@types/react": 18.0.26
-    "@types/react-dom": 18.0.10
-    eslint: 8.30.0
-    eslint-config-next: 13.1.1
-    eslint-config-prettier: ^8.5.0
-    firebase: ^9.15.0
-    husky: ^8.0.2
-    lint-staged: ^13.1.0
-    next: 13.1.1
-    prettier: ^2.8.1
-    react: 18.2.0
-    react-dom: 18.2.0
-    typescript: 4.9.4
-  languageName: unknown
-  linkType: soft
 
 "next@npm:13.1.1":
   version: 13.1.1
