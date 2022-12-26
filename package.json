@@ -1,5 +1,5 @@
 {
-  "name": "next-ts-eslint-prettier-husky-template",
+  "name": "firebase-realtime-chat",
   "version": "0.1.0",
   "private": true,
   "scripts": {
