@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 .pnp.*js
+.pnp.loader.*mjs
 .yarn
 
 # testing
