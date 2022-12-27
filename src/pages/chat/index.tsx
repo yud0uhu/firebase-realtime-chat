@@ -79,7 +79,7 @@ const ChatPage: NextPage = () => {
                     onChange={(e) => setMessage(e.target.value)}
                   />
                   <button
-                    className='col-span-1 text-white bg-sky-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded'
+                    className='col-span-1 text-white bg-sky-200 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded'
                     type={'submit'}
                   >
                     送信
