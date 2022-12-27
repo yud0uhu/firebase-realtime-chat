@@ -4,6 +4,7 @@ import { getDatabase, onChildAdded, push, ref } from '@firebase/database'
 import { FirebaseError } from '@firebase/util'
 import { NextPage } from 'next'
 import Message from '@/components/chat/message'
+import Header from '@/components/common/header'
 
 const ChatPage: NextPage = () => {
   const [message, setMessage] = useState<string>('')
@@ -58,16 +59,38 @@ const ChatPage: NextPage = () => {
   }, [])
 
   return (
-    <>
-      <h1>チャット</h1>
-      {chats.map((chat, index) => (
-        <Message key={`ChatMessage_${index}`} message={chat.message} />
-      ))}
-      <form onSubmit={handleSendMessage}>
-        <input value={message} onChange={(e) => setMessage(e.target.value)} />
-        <button type={'submit'}>送信</button>
-      </form>
-    </>
+    <div className='h-screen overflow-hidden'>
+      <Header title={'チャットルーム'} />
+      <div className='container mx-auto bg-white dark:bg-slate-800'>
+        <div className='relative h-screen rounded-xl m-2 items-center space-x-4'>
+          <div className='absolute inset-x-0 top-4 bottom-32 px-4 flex flex-col space-y-2 px-16'>
+            <div className='overflow-y-auto display-none'>
+              {chats.map((chat, index) => (
+                <Message key={`ChatMessage_${index}`} message={chat.message} />
+              ))}
+            </div>
+            <div className='position-fixed'>
+              <form onSubmit={handleSendMessage}>
+                <div className='grid grid-flow-row-dense grid-cols-5 gap-4'>
+                  <input
+                    className='col-span-4 block w-full rounded md:rounded-lg border pl-7 pr-12 py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                    placeholder='メッセージを入力してください'
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                  />
+                  <button
+                    className='col-span-1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded'
+                    type={'submit'}
+                  >
+                    送信
+                  </button>
+                </div>
+              </form>
+            </div>{' '}
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 export default ChatPage
