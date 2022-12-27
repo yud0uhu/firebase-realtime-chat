@@ -73,13 +73,13 @@ const ChatPage: NextPage = () => {
               <form onSubmit={handleSendMessage}>
                 <div className='grid grid-flow-row-dense grid-cols-5 gap-4'>
                   <input
-                    className='col-span-4 block w-full rounded md:rounded-lg border pl-7 pr-12 py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                    className='text-ellipsis overflow-hidden col-span-4 block w-full rounded md:rounded-lg border pl-7 pr-12 py-2 px-4 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
                     placeholder='メッセージを入力してください'
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                   />
                   <button
-                    className='col-span-1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded'
+                    className='col-span-1 text-white bg-sky-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded'
                     type={'submit'}
                   >
                     送信
