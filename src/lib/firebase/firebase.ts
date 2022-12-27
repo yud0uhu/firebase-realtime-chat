@@ -1,6 +1,6 @@
 import { getApps, getApp, FirebaseOptions, FirebaseApp, initializeApp } from 'firebase/app'
 
-export const config: FirebaseOptions = {
+export const firebaseConfig: FirebaseOptions = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
@@ -11,5 +11,5 @@ export const config: FirebaseOptions = {
 }
 
 export const getFirebaseApp = (): FirebaseApp => {
-  return !getApps().length ? initializeApp(config) : getApp()
+  return !getApps().length ? initializeApp(firebaseConfig) : getApp()
 }
