@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useEffect, useLayoutEffect, useRef, useState } from 'react'
 // Import Admin SDK
 import { getDatabase, onChildAdded, push, ref } from '@firebase/database'
 import { FirebaseError } from '@firebase/util'
@@ -8,7 +8,8 @@ import Header from '@/components/common/header'
 
 const ChatPage: NextPage = () => {
   const [message, setMessage] = useState<string>('')
-  const [chats, setChats] = useState<{ message: string }[]>([])
+  const [chatLogs, setChatLogs] = useState<{ message: string }[]>([])
+  const scrollBottomRef = useRef<HTMLDivElement>(null)
 
   const handleSendMessage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -26,6 +27,10 @@ const ChatPage: NextPage = () => {
       })
       // 成功した際はformの値をリセットする
       setMessage('')
+      scrollBottomRef?.current?.scrollIntoView!({
+        behavior: 'smooth',
+        block: 'end',
+      })
     } catch (e) {
       if (e instanceof FirebaseError) {
         console.log(e)
@@ -47,7 +52,7 @@ const ChatPage: NextPage = () => {
         // Firebaseデータベースからのデータはsnapshotで取得する
         // snapshot.val()でany型の値が返ってくる
         const message = String(snapshot.val()['message'] ?? '')
-        setChats((prev) => [...prev, { message }])
+        setChatLogs((prev) => [...prev, { message }])
       })
     } catch (e) {
       if (e instanceof FirebaseError) {
@@ -56,18 +61,19 @@ const ChatPage: NextPage = () => {
       // unsubscribeする
       return
     }
-  }, [])
+  }, [message])
 
   return (
     <div className='h-screen overflow-hidden'>
       <Header title={'あざらしちゃっと'} />
       <div className='container mx-auto bg-white dark:bg-slate-800'>
-        <div className='relative h-screen rounded-xl m-2 items-center space-x-4'>
+        <div className='relative h-screen rounded-xl m-2 items-center'>
           <div className='absolute inset-x-0 top-4 bottom-32 px-4 flex flex-col space-y-2 px-16'>
             <div className='overflow-y-auto display-none'>
-              {chats.map((chat, index) => (
+              {chatLogs.map((chat, index) => (
                 <Message key={`ChatMessage_${index}`} message={chat.message} />
               ))}
+              <div ref={scrollBottomRef} />
             </div>
             <div className='position-fixed'>
               <form onSubmit={handleSendMessage}>
@@ -86,7 +92,7 @@ const ChatPage: NextPage = () => {
                   </button>
                 </div>
               </form>
-            </div>{' '}
+            </div>
           </div>
         </div>
       </div>
