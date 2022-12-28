@@ -12,26 +12,23 @@ const ChatPage: NextPage = () => {
   const [message, setMessage] = useState<string>('')
   const [chatLogs, setChatLogs] = useState<{ message: string; createdAt: string }[]>([])
   const scrollBottomRef = useRef<HTMLDivElement>(null)
-
   const createdAt = format(new Date(), 'HH:mm', {
     locale: ja,
   })
   const handleSendMessage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
-      // Get a database reference to our blog
+      // databaseを参照して取得する
       const db = getDatabase()
       // 取得したdatabaseを紐付けるref(db, 'path')
-      // 今回はchatというパスにデータを書き込む
       const dbRef = ref(db, 'chat')
       // pushはデータを書き込む際にユニークキーを自動で生成する
       // 今回はpush() で生成されたユニークキーを取得する
       // messageというキーに値(message)を保存する
       await push(dbRef, {
         message,
-        createdAt,
       })
-      // 成功した際はformの値をリセットする
+      // 書き込みが成功した際はformの値をリセットする
       setMessage('')
       scrollBottomRef?.current?.scrollIntoView!({
         behavior: 'smooth',
@@ -49,14 +46,12 @@ const ChatPage: NextPage = () => {
       // Get a database reference to our posts
       const db = getDatabase()
       const dbRef = ref(db, 'chat')
-      /** onChildAddedでデータの取得、監視を行う
-       * onChildAddedはqueryとcallbackを引数に取り、Unsubscribeを返して、変更状態をsubscribeする関数
-       * export declare function onChildAdded(query: Query, callback: (snapshot: DataSnapshot, previousChildName?: string | null) => unknown, cancelCallback?: (error: Error) => unknown): Unsubscribe;
-       **/
+      // onChildAddedでデータの取得、監視を行う
+      // onChildAddedはqueryとcallbackを引数に取り、Unsubscribeを返して、変更状態をsubscribeする関数
+      // export declare function onChildAdded(query: Query, callback: (snapshot: DataSnapshot, previousChildName?: string | null) => unknown, cancelCallback?: (error: Error) => unknown): Unsubscribe;
       return onChildAdded(dbRef, (snapshot) => {
-        // Attach an asynchronous callback to read the data at our posts reference
         // Firebaseデータベースからのデータはsnapshotで取得する
-        // snapshot.val()でany型の値が返ってくる
+        // snapshot.val()はany型の値を返す
         const message = String(snapshot.val()['message'] ?? '')
         const createdAt = String(snapshot.val()['createdAt'] ?? '')
         setChatLogs((prev) => [...prev, { message, createdAt }])
