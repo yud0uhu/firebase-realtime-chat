@@ -60,7 +60,7 @@ const ChatPage: NextPage = () => {
 
   return (
     <div className='h-screen overflow-hidden'>
-      <Header title={'チャットルーム'} />
+      <Header title={'あざらしちゃっと'} />
       <div className='container mx-auto bg-white dark:bg-slate-800'>
         <div className='relative h-screen rounded-xl m-2 items-center space-x-4'>
           <div className='absolute inset-x-0 top-4 bottom-32 px-4 flex flex-col space-y-2 px-16'>
