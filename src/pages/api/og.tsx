@@ -4,9 +4,10 @@ import { NextRequest } from 'next/server'
 export const config = {
   runtime: 'experimental-edge',
 }
-const font = fetch(new URL('../../assets/KosugiMaru-Regular-Subset.ttf', import.meta.url)).then(
-  (res) => res.arrayBuffer(),
-)
+// NOTE: VercelのEdge Function超過のためフォントを未使用に
+// const font = fetch(new URL('../../assets/KosugiMaru-Regular-Subset.ttf', import.meta.url)).then(
+//   (res) => res.arrayBuffer(),
+// )
 export default async function handler(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url)
@@ -14,7 +15,7 @@ export default async function handler(req: NextRequest) {
     // ?title=<title>
     const hasTitle = searchParams.has('title')
     const title = hasTitle ? searchParams.get('title')?.slice(0, 100) : 'あざらしちゃっと'
-    const fontData = await font
+    // const fontData = await font
 
     return new ImageResponse(
       (
@@ -32,7 +33,7 @@ export default async function handler(req: NextRequest) {
             textAlign: 'center',
             alignItems: 'center',
             justifyContent: 'center',
-            fontFamily: '"KosugiMaru-RegularNotoSansJP"',
+            // fontFamily: '"KosugiMaru-RegularNotoSansJP"',
             fontSize: 50,
           }}
         >
@@ -42,13 +43,13 @@ export default async function handler(req: NextRequest) {
       {
         width: 900,
         height: 600,
-        fonts: [
-          {
-            name: 'KosugiMaru-Regular',
-            data: fontData,
-            style: 'normal',
-          },
-        ],
+        // fonts: [
+        //   {
+        //     name: 'KosugiMaru-Regular',
+        //     data: fontData,
+        //     style: 'normal',
+        //   },
+        // ],
       },
     )
   } catch (e: any) {
