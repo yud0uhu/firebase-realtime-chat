@@ -5,10 +5,10 @@ type HeaderProps = {
 const Header: FC<HeaderProps> = ({ title }: HeaderProps) => {
   return (
     <header>
-      <nav className='bg-sky-200 navbar navbar-expand-lg shadow-md py-2 bg-white relative flex items-center w-full justify-between'>
-        <div className='p-6 max-w-sm mx-auto flex items-center space-x-4'>
+      <nav className='navbar navbar-expand-lg relative flex w-full items-center justify-between bg-sky-200 bg-white py-2 shadow-md'>
+        <div className='mx-auto flex max-w-sm items-center space-x-4 p-6'>
           <div>
-            <div className='text-xl text-white font-medium'>{title}</div>
+            <div className='text-xl font-medium text-white'>{title}</div>
           </div>
         </div>
       </nav>
