@@ -74,7 +74,7 @@ const ChatPage: NextPage<OgpProps> = ({ baseUrl }: OgpProps) => {
   return (
     <div className='h-screen overflow-hidden'>
       <Head>
-        <meta content={`${baseUrl}/api/og?title=${'あざらしちゃっと'}`} property='og:image'></meta>
+        <meta content={`${baseUrl}/api/og`} property='og:image'></meta>
       </Head>
       <Header title={'あざらしちゃっと'} />
       <div className='container mx-auto bg-white dark:bg-slate-800'>
