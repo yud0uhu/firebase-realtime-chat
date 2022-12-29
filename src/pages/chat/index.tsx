@@ -1,13 +1,13 @@
-import { FormEvent, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { FormEvent, useEffect, useRef, useState } from 'react'
 // Import Admin SDK
 import { getDatabase, onChildAdded, push, ref } from '@firebase/database'
 import { FirebaseError } from '@firebase/util'
 import { NextPage } from 'next'
 import { format } from 'date-fns'
 import { ja } from 'date-fns/locale'
-import Head from 'next/head'
 import Message from '@/components/chat/message'
 import Header from '@/components/common/header'
+import Seo from '@/lib/seo'
 
 const ChatPage: NextPage = () => {
   const [message, setMessage] = useState<string>('')
@@ -69,12 +69,14 @@ const ChatPage: NextPage = () => {
 
   return (
     <div className='h-screen overflow-hidden'>
-      <Head>
-        <meta
-          content={`$https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/og`}
-          property='og:image'
-        ></meta>
-      </Head>
+      <Seo
+        description={
+          'Firebase Realtime Databaseでリアルタイムチャットをするサンプルです | あざらしちゃっと'
+        }
+        imageUrl={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/og`}
+        title={'あざらしちゃっと'}
+        url={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/chat`}
+      />
       <Header title={'あざらしちゃっと'} />
       <div className='container mx-auto bg-white dark:bg-slate-800'>
         <div className='relative m-2 h-screen items-center rounded-xl'>
