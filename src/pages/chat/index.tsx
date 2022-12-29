@@ -5,10 +5,15 @@ import { FirebaseError } from '@firebase/util'
 import { NextPage } from 'next'
 import { format } from 'date-fns'
 import { ja } from 'date-fns/locale'
+import Head from 'next/head'
 import Message from '@/components/chat/message'
 import Header from '@/components/common/header'
 
-const ChatPage: NextPage = () => {
+type OgpProps = {
+  baseUrl: string
+}
+
+const ChatPage: NextPage<OgpProps> = ({ baseUrl }: OgpProps) => {
   const [message, setMessage] = useState<string>('')
   const [chatLogs, setChatLogs] = useState<{ message: string; createdAt: string }[]>([])
   const scrollBottomRef = useRef<HTMLDivElement>(null)
@@ -68,6 +73,9 @@ const ChatPage: NextPage = () => {
 
   return (
     <div className='h-screen overflow-hidden'>
+      <Head>
+        <meta content={`${baseUrl}/api/og?title=${'あざらしちゃっと'}`} property='og:image'></meta>
+      </Head>
       <Header title={'あざらしちゃっと'} />
       <div className='container mx-auto bg-white dark:bg-slate-800'>
         <div className='relative m-2 h-screen items-center rounded-xl'>
