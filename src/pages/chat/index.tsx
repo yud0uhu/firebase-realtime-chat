@@ -27,6 +27,7 @@ const ChatPage: NextPage = () => {
       // messageというキーに値(message)を保存する
       await push(dbRef, {
         message,
+        createdAt,
       })
       // 書き込みが成功した際はformの値をリセットする
       setMessage('')
