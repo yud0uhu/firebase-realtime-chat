@@ -11,8 +11,8 @@ const Message: FC<MessageProps> = ({ message, createdAt }: MessageProps) => {
       <div>
         <Image alt='LogoImage' className='h-12 w-12' src={LogoImage} />
       </div>
-      <div className='m-4 rounded bg-sky-200 p-2 text-white'>{message}</div>
-      <div className='my-4 pt-4 text-sm'>{createdAt}</div>
+      <p className='m-4 rounded bg-sky-200 p-2 text-white'>{message}</p>
+      <p className='my-4 pt-4 text-sm'>{createdAt}</p>
     </div>
   )
 }

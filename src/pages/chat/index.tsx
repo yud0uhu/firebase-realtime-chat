@@ -86,7 +86,7 @@ const ChatPage: NextPage = () => {
               <form onSubmit={handleSendMessage}>
                 <div className='grid grid-flow-row-dense grid-cols-5 gap-4'>
                   <input
-                    className='focus:bg-border-sky-500 col-span-3 block w-full overflow-hidden text-ellipsis rounded border py-2 px-4 pl-2 focus:ring-sky-500 sm:text-sm md:col-span-4 md:rounded-lg'
+                    className='col-span-3 block w-full overflow-hidden text-ellipsis rounded border py-2 px-4 pl-2 focus:ring-sky-500 sm:text-sm md:col-span-4 md:rounded-lg'
                     placeholder='メッセージを入力してください'
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}

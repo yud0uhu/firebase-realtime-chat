@@ -5,7 +5,7 @@ type HeaderProps = {
 const Header: FC<HeaderProps> = ({ title }: HeaderProps) => {
   return (
     <header>
-      <nav className='navbar navbar-expand-lg relative flex w-full items-center justify-between bg-sky-200 bg-white py-2 shadow-md'>
+      <nav className='relative flex w-full items-center justify-between bg-sky-200 py-2 shadow-md'>
         <div className='mx-auto flex max-w-sm items-center space-x-4 p-6'>
           <div>
             <div className='text-xl font-medium text-white'>{title}</div>
