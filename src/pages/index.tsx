@@ -11,7 +11,9 @@ export default function Home() {
         description={
           'Firebase Realtime Databaseでリアルタイムチャットをするサンプルです | あざらしちゃっと'
         }
-        imageUrl={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/og`}
+        imageUrl={`https://${
+          process.env.NEXT_PUBLIC_VERCEL_URL
+        }/api/og?title=${'あざらしちゃっと'}`}
         title={'あざらしちゃっと'}
         url={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/`}
       />

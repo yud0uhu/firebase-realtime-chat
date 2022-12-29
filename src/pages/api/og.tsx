@@ -34,10 +34,9 @@ export default async function handler(req: NextRequest) {
             alignItems: 'center',
             justifyContent: 'center',
             // fontFamily: '"KosugiMaru-RegularNotoSansJP"',
-            fontSize: 50,
           }}
         >
-          {title}
+          <p style={{ fontSize: 50, textShadow: '0px 2px 2px rgba(0, 0, 0, 0.3)' }}>{title}</p>
         </div>
       ),
       {
