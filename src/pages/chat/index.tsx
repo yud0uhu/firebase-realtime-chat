@@ -9,11 +9,7 @@ import Head from 'next/head'
 import Message from '@/components/chat/message'
 import Header from '@/components/common/header'
 
-type OgpProps = {
-  baseUrl: string
-}
-
-const ChatPage: NextPage<OgpProps> = ({ baseUrl }: OgpProps) => {
+const ChatPage: NextPage = () => {
   const [message, setMessage] = useState<string>('')
   const [chatLogs, setChatLogs] = useState<{ message: string; createdAt: string }[]>([])
   const scrollBottomRef = useRef<HTMLDivElement>(null)
@@ -74,7 +70,10 @@ const ChatPage: NextPage<OgpProps> = ({ baseUrl }: OgpProps) => {
   return (
     <div className='h-screen overflow-hidden'>
       <Head>
-        <meta content={`${baseUrl}/api/og`} property='og:image'></meta>
+        <meta
+          content={`$https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/og`}
+          property='og:image'
+        ></meta>
       </Head>
       <Header title={'あざらしちゃっと'} />
       <div className='container mx-auto bg-white dark:bg-slate-800'>
