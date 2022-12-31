@@ -1,10 +1,9 @@
-import { getApp } from 'firebase/app'
 import Link from 'next/link'
-import Header from '@/components/common/header'
+import { FC } from 'react'
+import { NextPage } from 'next'
 import Seo from '@/lib/seo'
 
-export default function Home() {
-  console.log(getApp())
+const Home: FC<NextPage> = () => {
   return (
     <>
       <Seo
@@ -28,3 +27,4 @@ export default function Home() {
     </>
   )
 }
+export default Home

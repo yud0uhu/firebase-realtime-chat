@@ -31,6 +31,6 @@ const FirebaseAuthProvider = ({ children }: ReactNodeProps) => {
   )
 }
 
-export { FirebaseAuthContext, FirebaseAuthProvider }
+export { FirebaseAuthContext, FirebaseAuthProvider, getAuth }
 
 export const userFirebaseAuthContext = () => useContext(FirebaseAuthContext)
