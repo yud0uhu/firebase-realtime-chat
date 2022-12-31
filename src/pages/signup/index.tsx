@@ -5,13 +5,15 @@ import {
   updateProfile,
 } from '@firebase/auth'
 import { NextPage } from 'next'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { FirebaseError } from '@firebase/app'
 import router from 'next/router'
 import { useForm } from 'react-hook-form'
 import { LoginForm } from '@/features/common/types'
 
 export const SignUp: FC<NextPage> = () => {
+  const [error, setError] = useState('')
+
   const isValid = async (data: LoginForm) => {
     try {
       const auth = getAuth()
@@ -23,7 +25,17 @@ export const SignUp: FC<NextPage> = () => {
       router.push('/')
     } catch (e) {
       if (e instanceof FirebaseError) {
-        console.log(e)
+        if (e instanceof FirebaseError) {
+          if (e.code === 'auth/invalid-email') {
+            setError('メールアドレスがまちがっています')
+          } else if (e.code === 'auth/user-disabled') {
+            setError('指定されたメールアドレスのユーザーは無効です')
+          } else if (e.code === 'auth/user-not-found') {
+            setError('指定されたメールアドレスにユーザーが見つかりません')
+          } else if (e.code === 'auth/wrong-password') {
+            setError('パスワードがまちがっています')
+          }
+        }
       }
     }
   }
@@ -84,6 +96,7 @@ export const SignUp: FC<NextPage> = () => {
           <button className='mt-4 w-full text-center' onClick={() => router.push('/signin')}>
             LogIn
           </button>
+          <div className='mt-1 text-sm text-red-300'>{error ? <>{error}</> : <></>}</div>
         </div>
       </div>
     </>
