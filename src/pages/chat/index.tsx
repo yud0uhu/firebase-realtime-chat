@@ -90,7 +90,7 @@ const ChatPage: NextPage = () => {
               ))}
               <div ref={scrollBottomRef} />
             </div>
-            <div className='position-fixed'>
+            <div>
               <form onSubmit={handleSendMessage}>
                 <div className='grid grid-flow-row-dense grid-cols-5 gap-4'>
                   <input

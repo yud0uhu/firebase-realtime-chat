@@ -75,7 +75,7 @@ export const SignUp: FC<NextPage> = () => {
         <div className='flex justify-center'>
           {isFormSubmitted ? (
             <div>
-              <p className='text-bold bg-sky-200 text-lg'>ログイン完了</p>
+              <p className=' bg-sky-200 text-lg'>ログイン完了</p>
             </div>
           ) : (
             <button
