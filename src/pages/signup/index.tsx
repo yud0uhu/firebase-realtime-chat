@@ -35,58 +35,66 @@ export const SignUp: FC<NextPage> = () => {
   }
   return (
     <>
-      <form className='p-8' onSubmit={handleSubmit}>
-        <h2>ユーザー名を入力してください</h2>
-        <div>
-          <input
-            className='overflow-hidden text-ellipsis rounded border py-2 px-4 pl-2 focus:ring-sky-500 sm:text-sm  md:rounded-lg'
-            name={'username'}
-            type='text'
-            value={username}
-            onChange={(e) => {
-              setUserName(e.target.value)
-            }}
-          />
-        </div>
-        <h2>メールアドレスを入力してください</h2>
-        <div>
-          <input
-            className='overflow-hidden text-ellipsis rounded border py-2 px-4 pl-2 focus:ring-sky-500 sm:text-sm md:rounded-lg'
-            name={'email'}
-            type={'email'}
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value)
-            }}
-          />
-        </div>
-        <h2>パスワードを入力してください</h2>
-        <div>
-          <input
-            className='overflow-hidden text-ellipsis rounded border py-2 px-4 pl-2 focus:ring-sky-500 sm:text-sm  md:rounded-lg'
-            name={'password'}
-            type={'password'}
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value)
-            }}
-          />
-        </div>
-        <div className='flex justify-center'>
-          {isFormSubmitted ? (
-            <div>
-              <p className=' bg-sky-200 text-lg'>ログイン完了</p>
+      <div className='flex'>
+        <div className='mx-auto flex w-full flex-col items-center md:w-3/5 lg:w-2/3'>
+          <h1 className='my-10 text-2xl font-bold text-white'> Login </h1>
+          <form className='mt-2 flex w-8/12 flex-col lg:w-1/2' onSubmit={handleSubmit}>
+            <div className='mb-4'>
+              <label className='mb-1 block'>ユーザー名</label>
+              <input
+                className='mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-sky-300 focus:outline-none focus:ring focus:ring-sky-200  disabled:bg-gray-100'
+                name={'username'}
+                placeholder='User Name'
+                type='text'
+                value={username}
+                onChange={(e) => {
+                  setUserName(e.target.value)
+                }}
+              />
             </div>
-          ) : (
-            <button
-              className='col-span-2 rounded bg-sky-200 py-2 px-4 font-bold text-white hover:bg-sky-300 md:col-span-1'
-              type='submit'
-            >
-              サインインする
-            </button>
-          )}
+            <div className='mb-4'>
+              <label className='mb-1 block'>メールアドレス</label>
+              <input
+                className='mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-sky-300 focus:outline-none focus:ring focus:ring-sky-200  disabled:bg-gray-100'
+                name={'email'}
+                placeholder='your@email.com'
+                type={'email'}
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                }}
+              />
+            </div>
+            <div className='mb-4'>
+              <label className='mb-1 block'>パスワード</label>
+              <input
+                className='mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-sky-300 focus:outline-none focus:ring focus:ring-sky-200  disabled:bg-gray-100'
+                name={'password'}
+                placeholder='Password'
+                type={'password'}
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value)
+                }}
+              />
+            </div>
+            <div className='mb-6'>
+              {isFormSubmitted ? (
+                <div>
+                  <p className=' bg-sky-200 text-lg'>ログイン完了</p>
+                </div>
+              ) : (
+                <button
+                  className='mt-4 mb-20 w-full rounded bg-sky-200 py-4 text-center font-sans text-xl font-bold leading-tight text-white md:px-12 md:py-4 md:text-base'
+                  type='submit'
+                >
+                  サインアップする
+                </button>
+              )}
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </>
   )
 }
