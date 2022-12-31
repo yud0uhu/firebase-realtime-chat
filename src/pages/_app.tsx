@@ -12,13 +12,13 @@ export default function App({ Component, pageProps }: AppProps) {
   return auth ? (
     <FirebaseAuthProvider>
       <Header title={'あざらしちゃっと'} />
-      <Component {...pageProps} />
+      <SignUp {...pageProps} />
     </FirebaseAuthProvider>
   ) : (
     <>
       <FirebaseAuthProvider>
         <Header title={'あざらしちゃっと'} />
-        <SignUp {...pageProps} />
+        <Component {...pageProps} />
       </FirebaseAuthProvider>
     </>
   )
