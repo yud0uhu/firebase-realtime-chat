@@ -11,3 +11,8 @@ export type AuthContextState = {
 export type ReactNodeProps = {
   children?: React.ReactNode
 }
+export type LoginForm = {
+  username: string
+  email: string
+  password: string
+}
