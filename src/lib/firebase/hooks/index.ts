@@ -1,18 +1,14 @@
-import { onAuthStateChanged } from 'firebase/auth'
-import { getAuth } from '@/lib/firebase/utils/auth'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import router from 'next/router'
 
 export const signIn = () => {
   const auth = getAuth()
-  const user = auth.currentUser
-  onAuthStateChanged(auth, () => {
-    ;async () => {
-      console.log(user)
-      if (user) {
-        await router.push('/signin')
-      } else {
-        await router.push('/signup')
-      }
+  onAuthStateChanged(auth, (user) => {
+    console.log(user)
+    if (user) {
+      router.push('/signin')
+    } else {
+      router.push('/signup')
     }
   })
 }

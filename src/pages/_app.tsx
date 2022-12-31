@@ -10,23 +10,14 @@ import { signIn } from '@/lib/firebase/hooks'
 getFirebaseApp()
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const auth = userFirebaseAuthContext()
-
   useEffect(() => {
     signIn()
   }, [])
-  return auth ? (
+  return (
     <FirebaseAuthProvider>
       <Header title={'あざらしちゃっと'} />
       <Component {...pageProps} />
     </FirebaseAuthProvider>
-  ) : (
-    <>
-      <Header title={'あざらしちゃっと'} />
-      <div className='flex justify-center'>
-        <div className='h-10 w-10 animate-spin rounded-full border-4 border-blue-500 border-t-transparent'></div>
-      </div>
-    </>
   )
 }
 export default App
