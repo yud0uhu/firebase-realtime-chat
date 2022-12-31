@@ -64,13 +64,16 @@ export const SignIn: FC<NextPage> = () => {
                 <></>
               )}
               <button
-                className='mt-4 mb-20 w-full rounded bg-sky-200 py-4 text-center font-sans text-xl font-bold leading-tight text-white md:px-12 md:py-4 md:text-base'
+                className='mt-4  w-full rounded bg-sky-200 py-4 text-center font-sans text-xl font-bold leading-tight text-white md:px-12 md:py-4 md:text-base'
                 type='submit'
               >
                 ログインする
               </button>
             </div>
           </form>
+          <button className='mt-4 w-full text-center' onClick={() => router.push('/signup')}>
+            Sign Up
+          </button>
         </div>
       </div>
     </>

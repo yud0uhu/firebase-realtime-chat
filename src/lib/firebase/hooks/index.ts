@@ -1,14 +1,24 @@
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
 import router from 'next/router'
 
 export const signIn = () => {
   const auth = getAuth()
-  onAuthStateChanged(auth, (user) => {
-    console.log(user)
-    if (user) {
-      router.push('/signin')
-    } else {
-      router.push('/signup')
+  const unsubscribed = auth.onAuthStateChanged(async (user) => {
+    if (user === null) {
+      await router.push('/signin')
     }
+    unsubscribed()
   })
+}
+
+export const logOut = async () => {
+  const auth = getAuth()
+  await signOut(auth)
+    .then(() => {
+      router.push('/signin')
+    })
+    .catch((e) => {
+      alert('ログアウトに失敗しました')
+      console.log(e)
+    })
 }
