@@ -6,11 +6,16 @@ import { NextPage } from 'next'
 import { format } from 'date-fns'
 import { ja } from 'date-fns/locale'
 import Message from '@/components/chat/message'
-import Header from '@/components/common/header'
+import { userFirebaseAuthContext } from '@/lib/firebase/utils/auth'
 
 const ChatPage: NextPage = () => {
+  const auth = userFirebaseAuthContext()
+  const currentUserUid = auth.currentUser?.uid
+  const userName = auth.currentUser?.displayName
   const [message, setMessage] = useState<string>('')
-  const [chatLogs, setChatLogs] = useState<{ message: string; createdAt: string }[]>([])
+  const [chatLogs, setChatLogs] = useState<
+    { userName: string; message: string; createdAt: string }[]
+  >([])
   const scrollBottomRef = useRef<HTMLDivElement>(null)
   const createdAt = format(new Date(), 'HH:mm', {
     locale: ja,
@@ -21,11 +26,13 @@ const ChatPage: NextPage = () => {
       // databaseを参照して取得する
       const db = getDatabase()
       // 取得したdatabaseを紐付けるref(db, 'path')
-      const dbRef = ref(db, 'chat')
+      const dbRef = ref(db, 'signedChat')
       // pushはデータを書き込む際にユニークキーを自動で生成する
       // 今回はpush() で生成されたユニークキーを取得する
       // messageというキーに値(message)を保存する
       await push(dbRef, {
+        currentUserUid,
+        userName,
         message,
         createdAt,
       })
@@ -46,7 +53,7 @@ const ChatPage: NextPage = () => {
     try {
       // Get a database reference to our posts
       const db = getDatabase()
-      const dbRef = ref(db, 'chat')
+      const dbRef = ref(db, 'signedChat')
       // onChildAddedでデータの取得、監視を行う
       // onChildAddedはqueryとcallbackを引数に取り、Unsubscribeを返して、変更状態をsubscribeする関数
       // export declare function onChildAdded(query: Query, callback: (snapshot: DataSnapshot, previousChildName?: string | null) => unknown, cancelCallback?: (error: Error) => unknown): Unsubscribe;
@@ -55,7 +62,8 @@ const ChatPage: NextPage = () => {
         // snapshot.val()はany型の値を返す
         const message = String(snapshot.val()['message'] ?? '')
         const createdAt = String(snapshot.val()['createdAt'] ?? '')
-        setChatLogs((prev) => [...prev, { message, createdAt }])
+        const userName = String(snapshot.val()['userName'] ?? '')
+        setChatLogs((prev) => [...prev, { userName, message, createdAt }])
       })
     } catch (e) {
       if (e instanceof FirebaseError) {
@@ -68,7 +76,6 @@ const ChatPage: NextPage = () => {
 
   return (
     <div className='h-screen overflow-hidden'>
-      <Header title={'あざらしちゃっと'} />
       <div className='container mx-auto bg-white dark:bg-slate-800'>
         <div className='relative m-2 h-screen items-center rounded-xl'>
           <div className='absolute inset-x-0 top-4 bottom-32 flex flex-col space-y-2 px-16'>
@@ -78,6 +85,7 @@ const ChatPage: NextPage = () => {
                   createdAt={chat.createdAt}
                   key={`ChatMessage_${index}`}
                   message={chat.message}
+                  userName={chat.userName}
                 />
               ))}
               <div ref={scrollBottomRef} />

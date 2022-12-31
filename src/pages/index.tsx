@@ -17,7 +17,6 @@ export default function Home() {
         title={'あざらしちゃっと'}
         url={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/`}
       />
-      <Header title={'あざらしちゃっと'} />
       <div className='mt-32 flex justify-center gap-2 pt-32'>
         <button
           className='rounded bg-sky-200 py-2 px-4 font-bold text-white hover:bg-sky-300 md:col-span-1'

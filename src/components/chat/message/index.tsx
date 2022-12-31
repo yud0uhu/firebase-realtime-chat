@@ -4,10 +4,12 @@ import LogoImage from '../../../assets/logo.jpg'
 type MessageProps = {
   message: string
   createdAt: string
+  userName: string
 }
-const Message: FC<MessageProps> = ({ message, createdAt }: MessageProps) => {
+const Message: FC<MessageProps> = ({ userName, message, createdAt }: MessageProps) => {
   return (
     <div className='grid auto-cols-max grid-flow-col'>
+      <p className='my-4 pt-4 text-sm'>{userName}</p>
       <div>
         <Image alt='LogoImage' className='h-12 w-12' src={LogoImage} />
       </div>
