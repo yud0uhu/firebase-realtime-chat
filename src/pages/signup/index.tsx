@@ -3,10 +3,10 @@ import {
   getAuth,
   sendEmailVerification,
   updateProfile,
-} from 'firebase/auth'
+} from '@firebase/auth'
 import { NextPage } from 'next'
-import { FC, FormEvent, useState } from 'react'
-import { FirebaseError } from 'firebase/app'
+import { FC } from 'react'
+import { FirebaseError } from '@firebase/app'
 import router from 'next/router'
 import { useForm } from 'react-hook-form'
 import { LoginForm } from '@/features/common/types'

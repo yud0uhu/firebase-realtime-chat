@@ -1,5 +1,8 @@
-import { getApps, getApp, FirebaseOptions, FirebaseApp, initializeApp } from 'firebase/app'
+import { getApps, getApp, FirebaseOptions, FirebaseApp, initializeApp } from '@firebase/app'
 
+/**
+ * @see {@link https://firebase.google.com/docs/web/learn-more#config-object}<br>
+ */
 export const firebaseConfig: FirebaseOptions = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
