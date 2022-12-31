@@ -7,12 +7,13 @@ import {
 import { NextPage } from 'next'
 import { FC, FormEvent, useState } from 'react'
 import { FirebaseError } from 'firebase/app'
+import router from 'next/router'
 
 export const SignUp: FC<NextPage> = () => {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [username, setUserName] = useState<string>('')
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false)
+  const [isInvalidPasswordOrEmail, setIsInvalidPasswordOrEmail] = useState(false)
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
@@ -25,9 +26,10 @@ export const SignUp: FC<NextPage> = () => {
       setEmail('')
       setPassword('')
       setUserName('')
-      setIsFormSubmitted(true)
+      router.push('/')
     } catch (e) {
       if (e instanceof FirebaseError) {
+        setIsInvalidPasswordOrEmail(true)
         console.log(e)
       }
     }
@@ -78,18 +80,19 @@ export const SignUp: FC<NextPage> = () => {
               />
             </div>
             <div className='mb-6'>
-              {isFormSubmitted ? (
+              {isInvalidPasswordOrEmail == true ? (
                 <div>
-                  <p className=' bg-sky-200 text-lg'>ログイン完了</p>
+                  <p className='text-sm text-red-200'>メールアドレスかパスワードが間違っています</p>
                 </div>
               ) : (
-                <button
-                  className='mt-4 mb-20 w-full rounded bg-sky-200 py-4 text-center font-sans text-xl font-bold leading-tight text-white md:px-12 md:py-4 md:text-base'
-                  type='submit'
-                >
-                  サインアップする
-                </button>
+                <></>
               )}
+              <button
+                className='mt-4 mb-20 w-full rounded bg-sky-200 py-4 text-center font-sans text-xl font-bold leading-tight text-white md:px-12 md:py-4 md:text-base'
+                type='submit'
+              >
+                サインアップする
+              </button>
             </div>
           </form>
         </div>
